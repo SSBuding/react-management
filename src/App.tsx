@@ -1,10 +1,7 @@
-
 function App() {
-
-
   return (
     <div className="App">
-      顶级app组件
+      app组件
     </div>
   )
 }
