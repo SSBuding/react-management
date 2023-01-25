@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom'
 import {
     DesktopOutlined,
     FileOutlined,
@@ -29,8 +30,8 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
+    getItem('Option 1', '/page1', <PieChartOutlined />),
+    getItem('Option 2', '/page2', <DesktopOutlined />),
     getItem('User', 'sub1', <UserOutlined />, [
         getItem('Tom', '3'),
         getItem('Bill', '4'),
@@ -45,13 +46,17 @@ const View: React.FC = () => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
-
+    const navigateTo = useNavigate()
+    // 定义点击事件
+    const menuClick = (e: { key: string }) => {
+        navigateTo(e.key)
+    }
     return (
         <Layout style={{ minHeight: '100vh' }}>
             {/* 左边侧边栏 */}
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
             </Sider>
             {/* 右边内容区 */}
             <Layout className="site-layout">
@@ -65,10 +70,8 @@ const View: React.FC = () => {
                 </Header>
                 {/* 右边内容 */}
                 <Content style={{ margin: '16px 16px 0', height: '100%', background: colorBgContainer }}>
-
-                    {/* <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
-                        Bill is a cat.
-                    </div> */}
+                    {/* 窗口内容 */}
+                    <Outlet></Outlet>
                 </Content>
                 {/* 右边底部 */}
                 <Footer style={{ textAlign: 'center', padding: 0, lineHeight: '48px' }}>Ant Design ©2023 Created by Ant UED</Footer>
