@@ -1,10 +1,14 @@
+import router from '@/router'
+import { useRoutes, Link } from 'react-router-dom'
 
-import { Button, Space } from 'antd';
 function App() {
+  const outlet = useRoutes(router)
   return (
     <div className="App">
-      app组件
-      <Button type="primary">我是按钮</Button>
+
+      <Link to='/home'>Home</Link>|
+      <Link to='/about'>About</Link>
+      {outlet}
     </div>
   )
 }
