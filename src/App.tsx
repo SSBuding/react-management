@@ -1,5 +1,5 @@
 import router from '@/router'
-import { useRoutes, Link } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 
 function App() {
   const outlet = useRoutes(router)
