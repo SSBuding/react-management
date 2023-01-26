@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
     DesktopOutlined,
@@ -8,8 +8,13 @@ import {
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-type MenuItem = Required<MenuProps>['items'][number];
+// import type { MenuProps } from 'antd';
+type MenuItem = {
+    label: string,
+    key: string,
+    icon?: React.ReactNode,
+    children?: MenuItem[],
+}
 
 // function getItem(
 //     label: React.ReactNode,
@@ -94,7 +99,17 @@ const Comp: React.FC = () => {
     const menuClick = (e: { key: string }) => {
         navigateTo(e.key)
     }
-    const [openKeys, setOpenKeys] = useState(['']);
+    let firstOpenKey: string = ''
+    function findKey(obj: { key: string }) {
+        return obj.key === currentRoute.pathname
+    }
+    for (let i = 0; i < items.length; i++) {
+        if (items[i]!['children'] && items[i]['children']!.length > 0 && items[i]['children']!.find(findKey)) {
+            firstOpenKey = items[i]!.key as string
+            break
+        }
+    }
+    const [openKeys, setOpenKeys] = useState([firstOpenKey]);
     const handleChange = (keys: string[]) => {
         setOpenKeys([keys[keys.length - 1]])
     }
