@@ -51,12 +51,22 @@ const View: React.FC = () => {
     const menuClick = (e: { key: string }) => {
         navigateTo(e.key)
     }
+    const [openKeys, setOpenKeys] = useState(['']);
+    const handleChange = (keys: string[]) => {
+        setOpenKeys([keys[keys.length - 1]])
+    }
     return (
         <Layout style={{ minHeight: '100vh' }}>
             {/* 左边侧边栏 */}
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
+                <Menu theme="dark" defaultSelectedKeys={['/page1']}
+                    mode="inline"
+                    items={items}
+                    onClick={menuClick}
+                    onOpenChange={handleChange}
+                    openKeys={openKeys}
+                />
             </Sider>
             {/* 右边内容区 */}
             <Layout className="site-layout">
