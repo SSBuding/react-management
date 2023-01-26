@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd';
 import {
     DesktopOutlined,
@@ -89,6 +89,7 @@ const items: MenuItem[] = [
 ]
 const Comp: React.FC = () => {
     const navigateTo = useNavigate()
+    const currentRoute = useLocation()
     // 定义点击事件
     const menuClick = (e: { key: string }) => {
         navigateTo(e.key)
@@ -98,7 +99,8 @@ const Comp: React.FC = () => {
         setOpenKeys([keys[keys.length - 1]])
     }
     return (
-        <Menu theme="dark" defaultSelectedKeys={['/page1']}
+        <Menu theme="dark"
+            defaultSelectedKeys={[currentRoute.pathname]}
             mode="inline"
             items={items}
             onClick={menuClick}
