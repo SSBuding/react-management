@@ -16,7 +16,9 @@ let reducer = (state = {...handleNum.state},action:{type:string,val:number}) => 
     // }
     // 优化
     for(let key in handleNum.actionNames){
+        // @ts-ignore
         if(action.type === handleNum.actionNames[key]){
+            // @ts-ignore
             handleNum.actions[handleNum.actionNames[key]](newState,action)
             break
         }

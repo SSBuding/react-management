@@ -1,5 +1,5 @@
 import { legacy_createStore,combineReducers,compose,applyMiddleware} from 'redux'
-// import reduxThunk from 'redux-thunk'
+import reduxThunk from 'redux-thunk'
 import handleNum from './NumStatus/reducer'
 
 const reducers = combineReducers({

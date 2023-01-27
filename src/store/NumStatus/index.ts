@@ -33,6 +33,7 @@ const store = {
 }
 let actionNames = {}
 for(let key in store.actions){
+    // @ts-ignore
     actionNames[key] = key
 }
 store.actionNames = actionNames
