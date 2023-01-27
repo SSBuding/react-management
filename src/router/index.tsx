@@ -1,6 +1,7 @@
 import React, { lazy } from 'react'
 
 import Home from '@/views/Home'
+import Login from '@/views/Login'
 
 // 通过navigate重定向组件
 import { Navigate } from 'react-router-dom'
@@ -48,6 +49,10 @@ const routes = [
                 element: withLoadingComponent(<Page303 />)
             },
         ]
+    },
+    {
+        path: "/login",
+        element: <Login />
     },
     // 访问其他路径时重定向
     {
