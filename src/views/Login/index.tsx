@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import styles from './login.module.scss'
 import initLoginBg from './init.ts'
-import { Space, Input, Button, message } from 'antd'
+import { Space, Input, Button, message } from 'antd';
 import './login.less'
 import { CaptchaAPI, LoginAPI } from '@/request/api';
 import { useNavigate } from 'react-router-dom'
@@ -11,7 +11,7 @@ const view = () => {
     useEffect(() => {
         initLoginBg()
         window.onresize = function () { initLoginBg() }
-        // getCaptchaImg()
+        getCaptchaImg()
     }, [])
     // 获取用户输入的信息
     // 定义用户输入信息这个变量
@@ -23,7 +23,7 @@ const view = () => {
         // 获取用户输入的用户名
         // 修改usernameVal这个变量为用户输入的那个值，以后拿到usernameVal这个变量就相当于拿到用户输入的信息
         setUsernameVal(e.target.value)
-        // console.log(e.target.value)
+
     }
     const passwordChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPasswordVal(e.target.value);
@@ -44,7 +44,7 @@ const view = () => {
             code: captchaVal,
             uuid: localStorage.getItem('uuid') as string
         })
-        console.log(loginAPIRes, 'loginAPIRes66')
+
         if (loginAPIRes.code === 200) {
             //1、提示登录成功
             message.success('登录成功！')
@@ -79,7 +79,7 @@ const view = () => {
             <div className={styles.loginBox + " loginbox"}>
                 {/* 标题部分 */}
                 <div className={styles.title}>
-                    <h1>buding React&nbsp;·&nbsp;通用后台系统</h1>
+                    <h1>buding&nbsp;·&nbsp;通用后台系统</h1>
                     <p>Strive Everyday</p>
                 </div>
                 {/* 表单部分 */}
@@ -94,7 +94,7 @@ const view = () => {
                                 <img height="38" src={captchaImg} alt="" />
                             </div>
                         </div>
-                        <Button type="primary" className='loginBtn' block onClick={gotoLogin}>登录</Button>
+                        <Button type="primary" block onClick={gotoLogin}>登录</Button>
                     </Space>
                 </div>
             </div>
